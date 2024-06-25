@@ -5,39 +5,32 @@ include { DOWNLOAD_VEP_CACHE }  from './processes/download_vep_cache.nf'
 
 // Logging pipeline information
 log.info """\
-    ==========================================
-            P R E P A R E   V E P
-    ==========================================
+\033[0;36m    ==========================================  \033[0m
+\033[0;36m            P R E P A R E   V E P               \033[0m
+\033[0;36m    ==========================================  \033[0m
 
-    reference:  ${params.reference}
-    bwaidx:     ${params.bwaidx}
-    faidx:      ${params.faidx}
+    vepcache:  ${params.vepcache}
     """
     .stripIndent(true)
 
 // Define help
-if ( params.help ) {
-    help = """main.nf: This repository contains a Nextflow pipeline for pipeline 
-            |for BWA index and samtools (fai) index
+if (params.help) {
+    help = """\
+            |main.nf: This repository contains a Nextflow pipeline 
+            |for downloading the VEP cache.
             |
             |Required arguments:
-            |   --reference     Location of the reference file.
-            |                   [default: ${params.reference}]
-            |   --bwaidx        Location of the output file file.
-            |                   [default: ${params.bwaidx}]
-            |   --faidx         Location of the output file file.
-            |                   [default: ${params.faidx}]
+            |   --vepcache      VEP cache directory
+            |                   [default: ${params.vepcache}]
             |
             |Optional arguments:
             |   -profile        <docker/singularity>
             |
-""".stripMargin()
+            """.stripMargin()
     // Print the help with the stripped margin and exit
     println(help)
     exit(0)
 }
-
-reference = params.reference ? Channel.fromPath("${params.reference}", checkIfExists: true) : null
 
 // Define the workflow
 workflow {
@@ -59,7 +52,3 @@ workflow.onComplete {
         
     log.info ( workflow.success ? "\nDone" : "\nOops" )
 }
-
-
-
-
