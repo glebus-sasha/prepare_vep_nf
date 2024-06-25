@@ -7,6 +7,8 @@ This pipeline is prepared for:
 - [glebus-sasha/deepvariant_nf](https://github.com/glebus-sasha/deepvariant_nf)
 - [glebus-sasha/octopus_nf](https://github.com/glebus-sasha/octopus_nf)
 
+1. **DOWNLOAD_VEP_CACHE:** Downloaling or updating VEP cache and data bases.
+
 ## Usage
 
 ### Quick Start
