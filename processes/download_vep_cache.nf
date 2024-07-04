@@ -4,13 +4,15 @@ process DOWNLOAD_VEP_CACHE {
     tag "$cache_dir"
     publishDir "$cache_dir"
     cpus params.cpus
-//	  debug true
-    errorStrategy 'ignore'
+    debug true
+//    errorStrategy 'ignore'
 	
     input:
     path cache_dir
-    path clinvar.vcf.gz
-    path clinvar.vcf.gz.tbi
+
+    output:
+    path "clinvar.vcf.gz"
+    path "clinvar.vcf.gz.tbi"
 
     script:
     """
