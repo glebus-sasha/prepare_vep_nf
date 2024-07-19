@@ -3,7 +3,7 @@ process DOWNLOAD_VEP_CACHE {
     container = 'ensemblorg/ensembl-vep:latest'
     tag "$cache_dir"
     publishDir "$cache_dir"
-    cpus params.cpus
+//    cpus params.cpus
     debug true
 //    errorStrategy 'ignore'
 	
