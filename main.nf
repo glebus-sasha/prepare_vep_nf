@@ -2,6 +2,8 @@
 
 // Include processes
 include { DOWNLOAD_VEP_CACHE }  from './processes/download_vep_cache.nf'
+include { DOWNLOAD_CLINVAR }  from './processes/download_clinvar.nf'
+
 
 // Logging pipeline information
 log.info """\
@@ -32,9 +34,14 @@ if (params.help) {
     exit(0)
 }
 
+// Make the pipeline reports directory if it needs
+def pipeline_report_dir = new File("${params.vepcache}")
+pipeline_report_dir.mkdirs()
+
 // Define the workflow
 workflow {
-    DOWNLOAD_VEP_CACHE(params.vepcache)
+    DOWNLOAD_VEP_CACHE()
+    DOWNLOAD_CLINVAR()
 }
 
 // Log pipeline execution summary on completion
