@@ -7,6 +7,9 @@ process DOWNLOAD_VEP_CACHE {
     debug true
 //    errorStrategy 'ignore'
 
+    output:
+    path "*"
+
     script:
     """
     INSTALL.pl \
